@@ -4,17 +4,64 @@
         <title>Curso de JavaScript</title>
     </head>
     <body>
-
         <div id="app">
-            <div class="box"></div>
+            <input type="text" name="nome">
+            <button onClick="adicionar()">Adicionar</button>
+            <button onclick="criarQuadrado()">Criar quadrado</button>
         </div>
 
         <script>
-            var boxElement = document.querySelector('.box');
 
-            boxElement.style.width = 100;
-            boxElement.style.height = 100;
-            boxElement.style.backgroundColor = '#F00';
+            function getRandomColor() {
+                var letters = "0123456789ABCDEF";
+                var color = "#";
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+            
+
+            function criarQuadrado(){
+                var quadradoElement = document.createElement('div');
+
+                quadradoElement.style.width = 100;
+                quadradoElement.style.height = 100;
+                quadradoElement.style.backgroundColor = '#F00';
+                quadradoElement.setAttribute('onmouseover','trocarCor(this)');
+
+                document.querySelector('#app').appendChild(quadradoElement);
+            }
+
+            function trocarCor(element) {
+                var elementoQuadrado = element;
+                var newColor = getRandomColor();
+
+                elementoQuadrado.style.backgroundColor = newColor;
+            }
+
+            
+            var nomes = ["Diego", "Gabriel", "Lucas"];
+            var elementoUl = document.createElement('ul');
+            var elementoAuxiliar, elementoTextoAuxiliar;
+
+            document.getElementById('app').appendChild(elementoUl);
+            
+            for(var i = 0; i < nomes.length; i++) {
+                elementoAuxiliar = document.createElement('li');
+                elementoTextoAuxiliar = document.createTextNode(nomes[i]);
+                elementoAuxiliar.appendChild(elementoTextoAuxiliar);
+                elementoUl.appendChild(elementoAuxiliar);
+            }
+
+            function adicionar(){
+                var elementoInput = document.querySelector('input[name=nome]');
+                var elementoLi = document.createElement('li');
+                var elementoTexto = document.createTextNode(elementoInput.value);
+                elementoLi.appendChild(elementoTexto);
+                elementoUl.appendChild(elementoLi);
+                elementoInput.value = '';
+            }
         </script>
     </body>
 </html>
