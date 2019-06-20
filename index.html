@@ -6,15 +6,25 @@
     <body>
 
         <div id="app">
-                <button onmouseup="mostraAlerta()">Me pressione</button>
-                <button onmouseover="mostraAlerta()">Passe o mouse</button>
-                <input onkeypress="mostraAlerta()" />
+            <input type="text" name="nome" />
+            <button class="botao">Adicionar</button>
         </div>
 
         <script>
-            function mostraAlerta(){
-                alert('Botão foi clicado');
+            // var inputElement = document.getElementsByClassName('nome')[0];
+            // console.log(inputElement);
+            
+            // var inputElement = document.querySelectorAll('input[name=nome]');
+            // console.log(inputElement);
+
+            var inputElement = document.querySelector('input[name=nome]');
+            var btnElement = document.querySelector('button.botao');
+
+            btnElement.onclick = function() {
+                var text = inputElement.value;
+                alert(text);
             }
+
         </script>
     </body>
 </html>
